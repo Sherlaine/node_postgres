@@ -27,17 +27,3 @@ var knex = require('knex')({
     }console.log(results); 
   });
  
-
-  
-//   knex.select("*").from("famous_people")  
-//  .then(function (peoples){  
-//    peoples.forEach((people)=>{ //use of Arrow Function  
-//      console.log({...people});  
-//    });  
-//  }).catch(function(err) {  
-//  // All the error can be checked in this piece of code  
-//    console.log(err);  
-//  }).finally(function() {  
-    
-//    knex.destroy();  
-//  });  
