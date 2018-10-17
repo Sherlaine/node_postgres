@@ -11,16 +11,33 @@ var knex = require('knex')({
       database : settings.database
     }
   });
+
+  let firstName = process.argv[2];
+  let lastName = process.argv[3];
+  let dob = process.argv[4];
+
   //We fire Select Query with knex
-  knex.select("*").from("famous_people")  
- .then(function (peoples){  
-   peoples.forEach((people)=>{ //use of Arrow Function  
-     console.log({...people});  
-   });  
- }).catch(function(err) {  
- // All the error can be checked in this piece of code  
-   console.log(err);  
- }).finally(function() {  
-   // To close the connection pool  
-   knex.destroy();  
- });  
+   knex('famous_people').insert({
+    first_name: firstName,
+    last_name: lastName,
+    birthdate: dob
+  }).asCallback((err, results) => {
+    if (err) { 
+        console.error(err); 
+    }console.log(results); 
+  });
+ 
+
+  
+//   knex.select("*").from("famous_people")  
+//  .then(function (peoples){  
+//    peoples.forEach((people)=>{ //use of Arrow Function  
+//      console.log({...people});  
+//    });  
+//  }).catch(function(err) {  
+//  // All the error can be checked in this piece of code  
+//    console.log(err);  
+//  }).finally(function() {  
+    
+//    knex.destroy();  
+//  });  
